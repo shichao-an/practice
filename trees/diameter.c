@@ -26,7 +26,6 @@ int get_diameter(struct node *root, int *height)
 int main()
 {
     struct node *root = new_node(1);
-    assert(root);
     root->left = new_node(2);
     root->right = new_node(3);
     root->right->left = new_node(4);
