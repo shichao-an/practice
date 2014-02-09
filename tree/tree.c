@@ -4,9 +4,9 @@
 #include "tree.h"
 
 
-struct tree_node *new_node(int data)
+TreeNode *new_node(int data)
 {
-    struct tree_node *node = (struct tree_node *)malloc(sizeof(struct tree_node));
+    TreeNode *node = (TreeNode *)malloc(sizeof(TreeNode));
     assert(node != NULL);
     node->data = data;
     node->left = NULL;
@@ -14,7 +14,7 @@ struct tree_node *new_node(int data)
     return node;
 }
 
-void delete(struct tree_node *root)
+void delete(TreeNode *root)
 {
     if (root != NULL) {
         delete(root->left);
