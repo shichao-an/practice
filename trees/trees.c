@@ -23,5 +23,3 @@ void delete(struct node *root)
     }
 }
 
-
-
