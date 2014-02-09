@@ -52,7 +52,6 @@ void list_remove_next(List *list, ListNode *list_node, int *data)
     /* Remove the head node */
     if (list_node == NULL) {
         old_node = list->head;
-        *data = old_node->data;
         list->head = old_node->next;
 
         if (list->size == 1) {
@@ -70,8 +69,8 @@ void list_remove_next(List *list, ListNode *list_node, int *data)
             list->tail = list_node;
     }
 
+    *data = old_node->data;
     free(old_node);
-
     list->size--;
 
 }
@@ -121,11 +120,17 @@ int main()
 {
     List *list = (List *)malloc(sizeof(List));
     assert(list);
+    int data;
     list_init(list);
     list_insert(list, NULL, 1);
     list_insert(list, list->tail, 2);
     list_insert(list, list->tail, 3);
     list_insert(list, NULL, 4);
+    print_list(list);
+    list_remove_next(list, NULL, &data);
+    assert(data == 4);
+    list_remove_next(list, list->head->next, &data);
+    assert(data == 3);
     print_list(list);
     list_destroy_alt(list);
     return 0;
