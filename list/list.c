@@ -40,6 +40,7 @@ void list_insert(List *list, ListNode *list_node, const int data)
     list->size++;
 }
 
+
 /* Remove the list node next to `list_node`
  * Data of the removed node will be stored in `data`
  */
@@ -75,6 +76,7 @@ void list_remove_next(List *list, ListNode *list_node, int *data)
 
 }
 
+
 /* Destroy a list using `list_remove_next()` */
 void list_destroy(List *list)
 {
@@ -86,6 +88,8 @@ void list_destroy(List *list)
     free(list);
 }
 
+
+/* Alternative to `list_destroy()` */
 void list_destroy_alt(List *list)
 {
     assert(list->size > 0);
@@ -97,6 +101,7 @@ void list_destroy_alt(List *list)
     }
     free(list);
 }
+
 
 void print_list(List *list)
 {
