@@ -5,7 +5,7 @@
 #include "diameter.h"
 
 
-int get_diameter(struct tree_node *root, int *height)
+int get_diameter(struct TreeNode *root, int *height)
 {
     int left_h = 0, right_h = 0;
     int left_d = 0, right_d = 0;
@@ -25,7 +25,7 @@ int get_diameter(struct tree_node *root, int *height)
 
 int main()
 {
-    struct tree_node *root = new_node(1);
+    struct TreeNode *root = new_node(1);
     root->left = new_node(2);
     root->right = new_node(3);
     root->right->left = new_node(4);

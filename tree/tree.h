@@ -7,14 +7,14 @@
 #define max( a, b ) ( ((a) > (b)) ? (a) : (b) )
 #endif
 
-struct tree_node {
+struct TreeNode {
     int data;
-    struct tree_node *left;
-    struct tree_node *right;
+    struct TreeNode *left;
+    struct TreeNode *right;
 };
 
-struct tree_node *new_node(int data);
-void delete(struct tree_node *root);
+struct TreeNode *new_node(int data);
+void delete(struct TreeNode *root);
 
 #endif
 
