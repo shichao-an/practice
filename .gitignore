@@ -1,4 +1,5 @@
 *.swp
+*.orig
 
 # Object files
 *.o
