@@ -6,7 +6,7 @@ CFLAGS = -Wall
 %.o: %.c list.h 
 	$(CC) -c $(CFLAGS) -o $@ $<
 
-list: list.o list.o
+list: list.o
 	$(CC) -o $@ $^
 
 clean:
