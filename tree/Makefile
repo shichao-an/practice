@@ -3,10 +3,10 @@ CFLAGS = -Wall
 
 .PHONY: clean
 
-%.o: %.c trees.h
+%.o: %.c tree.h
 	$(CC) -c $(CFLAGS) -o $@ $<
 
-diameter: diameter.o trees.o
+diameter: diameter.o tree.o
 	$(CC) -o $@ $^
 
 clean:

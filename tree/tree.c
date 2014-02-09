@@ -1,12 +1,12 @@
 #include <assert.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include "trees.h"
+#include "tree.h"
 
 
-struct node *new_node(int data)
+struct tree_node *new_node(int data)
 {
-    struct node *node = (struct node *)malloc(sizeof(struct node));
+    struct tree_node *node = (struct tree_node *)malloc(sizeof(struct tree_node));
     assert(node != NULL);
     node->data = data;
     node->left = NULL;
@@ -14,7 +14,7 @@ struct node *new_node(int data)
     return node;
 }
 
-void delete(struct node *root)
+void delete(struct tree_node *root)
 {
     if (root != NULL) {
         delete(root->left);
