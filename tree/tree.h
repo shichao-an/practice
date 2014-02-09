@@ -14,6 +14,7 @@ typedef struct TreeNode {
 } TreeNode;
 
 TreeNode *new_node(int data);
+
 void delete(struct TreeNode *root);
 
 #endif
