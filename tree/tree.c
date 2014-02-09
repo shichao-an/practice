@@ -14,6 +14,7 @@ TreeNode *new_node(int data)
     return node;
 }
 
+
 void delete(TreeNode *root)
 {
     if (root != NULL) {

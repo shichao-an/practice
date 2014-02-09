@@ -23,6 +23,7 @@ int get_diameter(TreeNode *root, int *height)
     return max(max(left_d, right_d), left_h + right_h + 1);
 }
 
+
 int main()
 {
     TreeNode *root = new_node(1);
