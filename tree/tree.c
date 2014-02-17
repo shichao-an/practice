@@ -36,3 +36,4 @@ int get_tree_height(struct TreeNode *root)
         return max(left_h, right_h) + 1;
     }
 }
+
