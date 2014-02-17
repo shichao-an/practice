@@ -16,6 +16,7 @@ typedef struct TreeNode {
 
 TreeNode *new_node(int data);
 void delete(struct TreeNode *root);
+int get_tree_height(struct TreeNode *root);
 
 #endif
 

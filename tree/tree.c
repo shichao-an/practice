@@ -24,3 +24,15 @@ void delete(TreeNode *root)
     }
 }
 
+
+int get_tree_height(struct TreeNode *root)
+{
+    int left_h, right_h;
+    if (root == NULL)
+        return -1;
+    else {
+        left_h = get_tree_height(root->left);
+        right_h = get_tree_height(root->right);
+        return max(left_h, right_h) + 1;
+    }
+}
