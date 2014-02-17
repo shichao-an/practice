@@ -30,10 +30,12 @@ int main()
     root->left = new_node(2);
     root->right = new_node(3);
     root->right->left = new_node(4);
+    root->right->right = new_node(5);
     int height = 0;
     printf("Diameter of root: %d\n", get_diameter(root, &height));
+    int path[100];
+    print_tree_paths(root, path, 0);
     delete(root);
     return 0;
 }
-
 

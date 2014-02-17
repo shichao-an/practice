@@ -37,3 +37,31 @@ int get_tree_height(struct TreeNode *root)
     }
 }
 
+
+void print_tree_paths(struct TreeNode *root, int path[], int size)
+{
+    if (root == NULL) {
+        return;
+    }
+
+    path[size] = root->data;
+    size++;
+
+    if (root->left == NULL && root->right == NULL) {
+        print_integer_array(path, size);
+    } else {
+        print_tree_paths(root->left, path, size);
+        print_tree_paths(root->right, path, size);
+    }
+}
+
+
+void print_integer_array(int integers[], int size)
+{
+    int i;
+    for (i = 0; i < size; i++) {
+        printf("%d ", integers[i]);
+    }
+    printf("\n");
+}
+
