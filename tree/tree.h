@@ -17,6 +17,7 @@ typedef struct TreeNode {
 TreeNode *new_node(int data);
 void delete(struct TreeNode *root);
 int get_tree_height(struct TreeNode *root);
+int get_tree_sum(struct TreeNode *root);
 void print_tree_paths(struct TreeNode *root, int integers[], int size);
 void print_integer_array(int integers[], int size);
 

@@ -38,6 +38,17 @@ int get_tree_height(struct TreeNode *root)
 }
 
 
+int get_tree_sum(struct TreeNode *root)
+{
+    if (root == NULL)
+        return 0;
+    else {
+        return root->data + get_tree_sum(root->left) + get_tree_sum(root->right);
+    }
+
+}
+
+
 void print_tree_paths(struct TreeNode *root, int path[], int size)
 {
     if (root == NULL) {

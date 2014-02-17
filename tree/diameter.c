@@ -35,6 +35,7 @@ int main()
     printf("Diameter of root: %d\n", get_diameter(root, &height));
     int path[100];
     print_tree_paths(root, path, 0);
+    printf("Tree sum: %d\n", get_tree_sum(root));
     delete(root);
     return 0;
 }
