@@ -25,7 +25,7 @@ void delete(TreeNode *root)
 }
 
 
-int get_tree_height(struct TreeNode *root)
+int get_tree_height(TreeNode *root)
 {
     int left_h, right_h;
     if (root == NULL)
@@ -38,7 +38,7 @@ int get_tree_height(struct TreeNode *root)
 }
 
 
-int get_tree_sum(struct TreeNode *root)
+int get_tree_sum(TreeNode *root)
 {
     if (root == NULL)
         return 0;
@@ -46,11 +46,31 @@ int get_tree_sum(struct TreeNode *root)
         return (root->data + get_tree_sum(root->left)
                 + get_tree_sum(root->right));
     }
-
 }
 
 
-void print_tree_paths(struct TreeNode *root, int path[], int size)
+TreeNode *get_least_common_ancestor(TreeNode *root, TreeNode *a, TreeNode *b)
+{
+    TreeNode *left, *right;
+    if (root == NULL)
+        return NULL;
+    if (a == root || b == root)
+        return root;
+    left = get_least_common_ancestor(root->left, a, b);
+    right = get_least_common_ancestor(root->right, a, b);
+    /* a and b are in different sub-tree */
+    if (left != NULL && right != NULL)
+        return root;
+    else {
+        if (left != NULL)
+            return left;
+        else
+            return right;
+    }
+}
+
+
+void print_tree_paths(TreeNode *root, int path[], int size)
 {
     if (root == NULL) {
         return;
