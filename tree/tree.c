@@ -134,3 +134,16 @@ void fill_next_sibling(TreeNodeAlt *root)
     fill_next_sibling(root->right);
 }
 
+
+TreeNode *bst_find_recursive(TreeNode *root, int data)
+{
+    if (root == NULL)
+        return NULL;
+    if (data == root->data)
+        return root;
+    else if (data < root->data)
+        return bst_find_recursive(root->left, data);
+    else
+        return bst_find_recursive(root->right, data);
+}
+

@@ -34,5 +34,7 @@ void print_tree_paths(TreeNode *root, int integers[], int size);
 void print_integer_array(int integers[], int size);
 void fill_next_sibling(TreeNodeAlt *root);
 
+/* Binary Search Tree */
+TreeNode *bst_find_recursive(TreeNode *root, int data);
 #endif
 
