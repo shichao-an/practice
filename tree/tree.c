@@ -15,11 +15,34 @@ TreeNode *new_node(int data)
 }
 
 
+/* Alternative TreeNode, which includes an extra pointer, `next_sibling` */
+TreeNodeAlt *new_node_alt(int data)
+{
+    TreeNodeAlt *node = (TreeNodeAlt *)malloc(sizeof(TreeNodeAlt));
+    assert(node != NULL);
+    node->data = data;
+    node->left = NULL;
+    node->right = NULL;
+    node->next_sibling = NULL;
+    return node;
+}
+
+
 void delete(TreeNode *root)
 {
     if (root != NULL) {
         delete(root->left);
         delete(root->right);
+        free(root);
+    }
+}
+
+
+void delete_alt(TreeNodeAlt *root)
+{
+    if (root != NULL) {
+        delete_alt(root->left);
+        delete_alt(root->right);
         free(root);
     }
 }
@@ -95,5 +118,19 @@ void print_integer_array(int integers[], int size)
         printf("%d ", integers[i]);
     }
     printf("\n");
+}
+
+
+void fill_next_sibling(TreeNodeAlt *root)
+{
+    if (root == NULL)
+        return;
+    if (root->left)
+        root->left->next_sibling = root->right;
+    if (root->right)
+        root->right->next_sibling = ((root->next_sibling != NULL) ?
+                                     root->next_sibling->left : NULL);
+    fill_next_sibling(root->left);
+    fill_next_sibling(root->right);
 }
 

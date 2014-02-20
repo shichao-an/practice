@@ -14,13 +14,24 @@ typedef struct TreeNode {
 } TreeNode;
 
 
+typedef struct TreeNodeAlt {
+    int data;
+    struct TreeNodeAlt *left;
+    struct TreeNodeAlt *right;
+    struct TreeNodeAlt *next_sibling;
+} TreeNodeAlt;
+
+
 TreeNode *new_node(int data);
+TreeNodeAlt *new_node_alt(int data);
 void delete(TreeNode *root);
+void delete_alt(TreeNodeAlt *root);
 int get_tree_height(TreeNode *root);
 int get_tree_sum(TreeNode *root);
 TreeNode *get_least_common_ancestor(TreeNode *root, TreeNode *a, TreeNode *b);
 void print_tree_paths(TreeNode *root, int integers[], int size);
 void print_integer_array(int integers[], int size);
+void fill_next_sibling(TreeNodeAlt *root);
 
 #endif
 
