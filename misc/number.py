@@ -50,6 +50,29 @@ def max_subarray(a):
     return max_sum
 
 
+def get_max_profit(prices):
+    """
+    Multiple transactions allowed
+    """
+    if not prices:
+        return 0
+    max_profit = 0
+
+    # `m[i]` represents the max profit ending `i`
+    m = [0] * len(prices)
+    m[0] = 0
+    for i in range(1, len(prices)):
+        if prices[i] > prices[i - 1]:
+            m[i] = m[i - 1] + prices[i] - prices[i - 1]
+        else:
+            m[i] = 0
+    m += [0]
+    for i, e in enumerate(m):
+        if e == 0:
+            max_profit += m[i - 1]
+    return max_profit
+
+
 if __name__ == '__main__':
     assert reverse_integer(-173) == -371
     assert reverse_integer(976) == 679
@@ -61,3 +84,11 @@ if __name__ == '__main__':
     c = [-3, -4, -5, -1, -9]
     assert max_subarray(b) == 6
     assert max_subarray(c) == -1
+    d = [4, 2, 5, 7, 4, 3, 3, 6, 9]
+    e = [3, 2, 1]
+    f = [6, 1, 3, 2, 4, 7]
+    g = [2, 4, 1]
+    print(get_max_profit(d))
+    print(get_max_profit(e))
+    print(get_max_profit(f))
+    print(get_max_profit(g))
