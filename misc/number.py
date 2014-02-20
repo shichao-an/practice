@@ -50,8 +50,10 @@ def max_subarray(a):
     return max_sum
 
 
-def get_max_profit(prices):
+def get_max_profit_ii(prices):
     """
+    :param prices: array of prices where `prices[i]` represents the price on
+        ith day
     Multiple transactions allowed
     """
     if not prices:
@@ -73,6 +75,29 @@ def get_max_profit(prices):
     return max_profit
 
 
+def get_max_profit(prices):
+    """
+    :param prices: array of prices where `prices[i]` represents the price on
+        ith day
+    Only one transaction allowed
+    """
+    if not prices:
+        return 0
+    min_index = 0
+    max_profit = 0
+    buy_index = 0
+    sell_index = 0
+    for i in range(len(prices)):
+        if prices[i] < prices[min_index]:
+            min_index = i
+        profit = prices[i] - prices[min_index]
+        if profit > max_profit:
+            max_profit = profit
+            buy_index = min_index
+            sell_index = i
+    return prices[sell_index] - prices[buy_index]
+
+
 if __name__ == '__main__':
     assert reverse_integer(-173) == -371
     assert reverse_integer(976) == 679
@@ -88,7 +113,7 @@ if __name__ == '__main__':
     e = [3, 2, 1]
     f = [6, 1, 3, 2, 4, 7]
     g = [2, 4, 1]
-    print(get_max_profit(d))
-    print(get_max_profit(e))
-    print(get_max_profit(f))
-    print(get_max_profit(g))
+    assert get_max_profit(d) == 7
+    assert get_max_profit(e) == 0
+    assert get_max_profit(f) == 6
+    assert get_max_profit(g) == 2
