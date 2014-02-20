@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "tree.h"
-#include "diameter.h"i
+#include "diameter.h"
 
 
 static TreeNode *create_tree()

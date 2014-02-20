@@ -14,6 +14,7 @@ typedef struct TreeNode {
 } TreeNode;
 
 
+/* Alternative TreeNode, which includes an extra pointer, `next_sibling` */
 typedef struct TreeNodeAlt {
     int data;
     struct TreeNodeAlt *left;
