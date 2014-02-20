@@ -30,4 +30,4 @@ if __name__ == '__main__':
     assert reverse_integer(500) == 5
     assert reverse_integer(0) == 0
     a = [2, 5, 5, 8, 9, 6, 2, 3, 9, 3, 6]
-    print(get_single_integer(a))
+    assert get_single_integer(a) == 8
