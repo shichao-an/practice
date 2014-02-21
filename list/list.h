@@ -15,4 +15,11 @@ typedef struct List {
 } List;
 
 
+void list_init(List *list);
+void list_insert(List *list, ListNode *list_node, const int data);
+void list_remove_next(List *list, ListNode *list_node, int *data);
+void list_destroy(List *list);
+void list_destroy_alt(List *list);
+void list_print(List *list);
+
 #endif

@@ -80,7 +80,7 @@ void list_remove_next(List *list, ListNode *list_node, int *data)
 void list_destroy(List *list)
 {
     int data;
-    assert(list->size > 0);
+    //assert(list->size > 0);
     while (list->size > 0) {
         list_remove_next(list, NULL, &data);
     }
@@ -91,7 +91,7 @@ void list_destroy(List *list)
 /* Alternative to `list_destroy()` */
 void list_destroy_alt(List *list)
 {
-    assert(list->size > 0);
+    //assert(list->size > 0);
     ListNode *head = list->head;
     while (head) {
         ListNode *next = head->next;
@@ -102,7 +102,7 @@ void list_destroy_alt(List *list)
 }
 
 
-void print_list(List *list)
+void list_print(List *list)
 {
     ListNode *head = list->head;
     while (head) {
@@ -115,7 +115,7 @@ void print_list(List *list)
     putchar('\n');
 }
 
-
+/*
 int main()
 {
     List *list = (List *)malloc(sizeof(List));
@@ -135,4 +135,4 @@ int main()
     list_destroy_alt(list);
     return 0;
 }
-
+*/
