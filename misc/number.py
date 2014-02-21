@@ -50,6 +50,20 @@ def max_subarray(a):
     return max_sum
 
 
+def max_subarray_alt(a):
+    """
+    Simpler implementation without extra space (auxiliary array `m`)
+    """
+    if not a:
+        raise Exception('The input array must contain at least one number.')
+    max_sum = a[0]
+    max_current = max_sum
+    for i in range(1, len(a)):
+        max_current = max(a[i], max_current + a[i])
+        max_sum = max(max_sum, max_current)
+    return max_sum
+
+
 def get_max_profit_ii(prices):
     """
     Multiple transactions allowed
@@ -123,7 +137,9 @@ if __name__ == '__main__':
     b = [-2, 1, -3, 4, -1, 2, 1, -5, 4]
     c = [-3, -4, -5, -1, -9]
     assert max_subarray(b) == 6
+    assert max_subarray_alt(b) == 6
     assert max_subarray(c) == -1
+    assert max_subarray_alt(c) == -1
     d = [4, 2, 5, 7, 4, 3, 3, 6, 9]
     e = [3, 2, 1]
     f = [6, 1, 3, 2, 4, 7]
