@@ -50,6 +50,17 @@ def max_subarray(a):
     return max_sum
 
 
+def get_max_profit_ii_alt(prices):
+
+    if not prices:
+        return 0
+    max_profit = 0
+    for i in range(1, len(prices)):
+        if prices[i] > prices[i - 1]:
+            max_profit += prices[i] - prices[i - 1]
+    return max_profit
+
+
 def get_max_profit_ii(prices):
     """
     :param prices: array of prices where `prices[i]` represents the price on
@@ -117,3 +128,9 @@ if __name__ == '__main__':
     assert get_max_profit(e) == 0
     assert get_max_profit(f) == 6
     assert get_max_profit(g) == 2
+    print(get_max_profit_ii_alt(d))
+    print(get_max_profit_ii(d))
+    print(get_max_profit_ii_alt(f))
+    print(get_max_profit_ii(f))
+    print(get_max_profit_ii_alt(g))
+    print(get_max_profit_ii(g))
