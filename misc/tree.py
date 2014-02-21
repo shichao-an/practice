@@ -55,6 +55,9 @@ def unique_num_bst(n):
 
 
 def preorder_traverse(root):
+    """
+    Binary tree preorder traversal (iterative)
+    """
     stack = []
     path = []
     while True:
@@ -69,15 +72,37 @@ def preorder_traverse(root):
     return path
 
 
+def preorder_traverse_alt(root):
+    stack = []
+    path = []
+    if root is None:
+        return path
+    stack.append(root)
+    while stack:
+        root = stack.pop()
+        path.append(root)
+        if root.right is not None:
+            stack.append(root.right)
+        if root.left is not None:
+            stack.append(root.left)
+    return path
+
+
 if __name__ == '__main__':
     root = new_tree_node(1)
     root.left = new_tree_node(2)
     root.right = new_tree_node(3)
     root.left.left = new_tree_node(4)
+    root2 = new_tree_node(1)
+    root2.right = new_tree_node(2)
+    root2.right.right = new_tree_node(3)
     print(max_tree_depth(root))
     print(is_same_tree(root, root.left))
     print(is_same_tree(root, root))
     print(preorder_traverse(root))
+    print(preorder_traverse(root2))
+    print(preorder_traverse_alt(root))
+    print(preorder_traverse_alt(root2))
     assert unique_num_bst(0) == 1
     assert unique_num_bst(1) == 1
     assert unique_num_bst(2) == 2
