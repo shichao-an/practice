@@ -50,8 +50,13 @@ def max_subarray(a):
     return max_sum
 
 
-def get_max_profit_ii_alt(prices):
+def get_max_profit_ii(prices):
+    """
+    Multiple transactions allowed
 
+    :param prices: array of prices where `prices[i]` represents the price on
+        ith day
+    """
     if not prices:
         return 0
     max_profit = 0
@@ -61,11 +66,9 @@ def get_max_profit_ii_alt(prices):
     return max_profit
 
 
-def get_max_profit_ii(prices):
+def get_max_profit_ii_alt(prices):
     """
-    :param prices: array of prices where `prices[i]` represents the price on
-        ith day
-    Multiple transactions allowed
+    Utilized idea from `max_subarray`
     """
     if not prices:
         return 0
@@ -80,6 +83,7 @@ def get_max_profit_ii(prices):
         else:
             m[i] = 0
     m += [0]
+    # Get the sum of highest points
     for i, e in enumerate(m):
         if e == 0:
             max_profit += m[i - 1]
@@ -128,9 +132,9 @@ if __name__ == '__main__':
     assert get_max_profit(e) == 0
     assert get_max_profit(f) == 6
     assert get_max_profit(g) == 2
-    print(get_max_profit_ii_alt(d))
-    print(get_max_profit_ii(d))
-    print(get_max_profit_ii_alt(f))
-    print(get_max_profit_ii(f))
-    print(get_max_profit_ii_alt(g))
-    print(get_max_profit_ii(g))
+    assert(get_max_profit_ii_alt(d) == 11)
+    assert(get_max_profit_ii(d) == 11)
+    assert(get_max_profit_ii_alt(f) == 7)
+    assert(get_max_profit_ii(f) == 7)
+    assert(get_max_profit_ii_alt(g) == 2)
+    assert(get_max_profit_ii(g) == 2)
