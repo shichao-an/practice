@@ -54,6 +54,21 @@ def unique_num_bst(n):
     return t[n]
 
 
+def preorder_traverse(root):
+    stack = []
+    path = []
+    while True:
+        while root is not None:
+            path.append(root.data)
+            stack.append(root)
+            root = root.left
+        if not stack:
+            break
+        root = stack.pop()
+        root = root.right
+    return path
+
+
 if __name__ == '__main__':
     root = new_tree_node(1)
     root.left = new_tree_node(2)
@@ -62,6 +77,7 @@ if __name__ == '__main__':
     print(max_tree_depth(root))
     print(is_same_tree(root, root.left))
     print(is_same_tree(root, root))
+    print(preorder_traverse(root))
     assert unique_num_bst(0) == 1
     assert unique_num_bst(1) == 1
     assert unique_num_bst(2) == 2
