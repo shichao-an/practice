@@ -127,7 +127,7 @@ def get_max_profit_alt(prices):
     return prices[sell_index] - prices[buy_index]
 
 
-def get_max_profit(prices):
+def get_max_profit_alt2(prices):
     if not prices:
         return 0
     # small[i] indicates smallest price ending `i` (`i` included)
@@ -145,6 +145,17 @@ def get_max_profit(prices):
         d = large[i] - small[i]
         if d > max_profit:
             max_profit = d
+    return max_profit
+
+
+def get_max_profit(prices):
+    if not prices:
+        return 0
+    max_profit = 0
+    min_price = prices[0] 
+    for i, p in enumerate(prices, start=0):
+        max_profit = max(max_profit, (p - min_price))
+        min_price = min(min_price, p)
     return max_profit
 
 
