@@ -5,6 +5,14 @@ class TreeNode(object):
         self.right = None
 
 
+class TreeNodeAlt(object):
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+        self.next = None
+
+
 def new_tree_node(data):
     return TreeNode(data)
 
@@ -86,6 +94,19 @@ def preorder_traverse_alt(root):
         if root.left is not None:
             stack.append(root.left)
     return path
+
+
+def populate_next_right_pointers(root):
+    if root is None:
+        return
+    if root.left is not None:
+        root.left.next = root.right
+    if root.right is not None:
+        if root.next is not None:
+            root.right.next = root.next.left
+        # else, root.right.next is None by default
+    populate_next_right_pointers(root.left)
+    populate_next_right_pointers(root.right)
 
 
 if __name__ == '__main__':
