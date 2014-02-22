@@ -46,8 +46,7 @@ int main()
     printf("Tree sum: %d\n", get_tree_sum(root));
     printf("LCA: %d\n", get_least_common_ancestor(root, a, b)->data);
 
-    /* Fill next siblings */
-    fill_next_sibling(root_alt);
+    populate_next_right_pointers(root_alt);
 
     delete(root);
     delete_alt(root_alt);

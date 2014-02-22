@@ -19,7 +19,7 @@ typedef struct TreeNodeAlt {
     int data;
     struct TreeNodeAlt *left;
     struct TreeNodeAlt *right;
-    struct TreeNodeAlt *next_sibling;
+    struct TreeNodeAlt *next;
 } TreeNodeAlt;
 
 
@@ -32,7 +32,7 @@ int get_tree_sum(TreeNode *root);
 TreeNode *get_least_common_ancestor(TreeNode *root, TreeNode *a, TreeNode *b);
 void print_tree_paths(TreeNode *root, int integers[], int size);
 void print_integer_array(int integers[], int size);
-void fill_next_sibling(TreeNodeAlt *root);
+void populate_next_right_pointers(TreeNodeAlt *root);
 
 /* Binary Search Tree */
 TreeNode *bst_find_recursive(TreeNode *root, int data);
