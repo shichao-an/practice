@@ -104,7 +104,7 @@ def get_max_profit_ii_alt(prices):
     return max_profit
 
 
-def get_max_profit(prices):
+def get_max_profit_alt(prices):
     """
     :param prices: array of prices where `prices[i]` represents the price on
         ith day
@@ -125,6 +125,27 @@ def get_max_profit(prices):
             buy_index = min_index
             sell_index = i
     return prices[sell_index] - prices[buy_index]
+
+
+def get_max_profit(prices):
+    if not prices:
+        return 0
+    # small[i] indicates smallest price ending `i` (`i` included)
+    # large[i] indicates largest prices after `i`
+    n = len(prices)
+    small = [0] * n
+    large = [0] * n
+    small[0] = prices[0]
+    large[n - 1] = prices[n - 1]
+    for i in range(1, n):
+        small[i] = min(small[i - 1], prices[i])
+        large[n - 1 - i] = max(large[n - 1], prices[n - 1 - i])
+    max_profit = 0
+    for i in range(n):
+        d = large[i] - small[i]
+        if d > max_profit:
+            max_profit = d
+    return max_profit
 
 
 if __name__ == '__main__':
