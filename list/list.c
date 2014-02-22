@@ -104,6 +104,7 @@ void list_destroy_alt(List *list)
 
 void list_print(List *list)
 {
+    /* Print each node in the list (casting them to int) */
     ListNode *head = list->head;
     while (head) {
         int *t = (int *)head->data;
@@ -116,24 +117,3 @@ void list_print(List *list)
     putchar('\n');
 }
 
-/*
-int main()
-{
-    List *list = (List *)malloc(sizeof(List));
-    assert(list);
-    int data;
-    list_init(list);
-    list_insert(list, NULL, 1);
-    list_insert(list, list->tail, 2);
-    list_insert(list, list->tail, 3);
-    list_insert(list, NULL, 4);
-    print_list(list);
-    list_remove_next(list, NULL, &data);
-    assert(data == 4);
-    list_remove_next(list, list->head->next, &data);
-    assert(data == 3);
-    print_list(list);
-    list_destroy_alt(list);
-    return 0;
-}
-*/
