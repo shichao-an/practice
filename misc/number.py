@@ -159,6 +159,28 @@ def get_max_profit(prices):
     return max_profit
 
 
+def search_insert(a, target):
+    """
+    Given a sorted array and a target value, return the index if the
+    target is found. If not, return the index where it would be if it
+    were inserted in order.
+    """
+    if not a:
+        return 0
+    n = len(a)
+    left = 0
+    right = n - 1
+    while left <= right:
+        mid = (left + right) / 2
+        if a[mid] == target:
+            return mid
+        elif a[mid] < target:
+            left = mid + 1
+        else:
+            right = mid - 1
+    return left if left >= 0 else 0
+
+
 if __name__ == '__main__':
     assert reverse_integer(-173) == -371
     assert reverse_integer(976) == 679
@@ -186,3 +208,8 @@ if __name__ == '__main__':
     assert(get_max_profit_ii(f) == 7)
     assert(get_max_profit_ii_alt(g) == 2)
     assert(get_max_profit_ii(g) == 2)
+    s = [1, 3, 5, 6]
+    assert(search_insert(s, 5) == 2)
+    assert(search_insert(s, 2) == 1)
+    assert(search_insert(s, 7) == 4)
+    assert(search_insert(s, 0) == 0)
