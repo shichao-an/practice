@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "tree.h"
+#include "queue.h"
 
 
 TreeNode *new_node(int data)
@@ -145,5 +146,25 @@ TreeNode *bst_find_recursive(TreeNode *root, int data)
         return bst_find_recursive(root->left, data);
     else
         return bst_find_recursive(root->right, data);
+}
+
+
+void level_order_traverse(TreeNode *root)
+{
+    if (root == NULL)
+        return;
+    Queue *queue = queue_create();
+    queue_enqueue(queue, root);
+    printf("Enqueue succeed.\n");
+    while (!queue_empty(queue)) {
+        TreeNode *current = (TreeNode *)queue_dequeue(queue);
+        int data = current->data;
+        printf("%d\n", data);
+        if (current->left != NULL)
+            queue_enqueue(queue, current->left);
+        if (current->right != NULL)
+            queue_enqueue(queue, current->right);
+    }
+    queue_destroy(queue);
 }
 

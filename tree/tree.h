@@ -33,6 +33,7 @@ TreeNode *get_least_common_ancestor(TreeNode *root, TreeNode *a, TreeNode *b);
 void print_tree_paths(TreeNode *root, int integers[], int size);
 void print_integer_array(int integers[], int size);
 void populate_next_right_pointers(TreeNodeAlt *root);
+void level_order_traverse(TreeNode *root);
 
 /* Binary Search Tree */
 TreeNode *bst_find_recursive(TreeNode *root, int data);

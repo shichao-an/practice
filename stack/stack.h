@@ -10,8 +10,8 @@ typedef List Stack;
 #define stack_empty(stack) ((stack)->size == 0 ? 1 : 0)
 
 Stack *stack_create();
-void stack_push(Stack *stack, const int data);
-int stack_pop(Stack *stack);
-int stack_top(Stack *stack);
+void stack_push(Stack *stack, const void *data);
+void *stack_pop(Stack *stack);
+void *stack_top(Stack *stack);
 
 #endif

@@ -47,6 +47,7 @@ int main()
     printf("LCA: %d\n", get_least_common_ancestor(root, a, b)->data);
 
     populate_next_right_pointers(root_alt);
+    level_order_traverse(root);
 
     delete(root);
     delete_alt(root_alt);

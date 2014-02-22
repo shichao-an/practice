@@ -14,21 +14,21 @@ Stack *stack_create()
 }
 
 
-void stack_push(Stack *stack, const int data)
+void stack_push(Stack *stack, const void *data)
 {
     list_insert(stack, NULL, data);
 }
 
 
-int stack_pop(Stack *stack)
+void *stack_pop(Stack *stack)
 {
-    int data;
-    list_remove_next(stack, NULL, &data);
+    void *data;
+    list_remove_next(stack, NULL, (void **)&data);
     return data;
 }
 
 
-int stack_top(Stack *stack)
+void *stack_top(Stack *stack)
 {
     assert(stack->head != NULL);
     return stack->head->data;

@@ -1,12 +1,23 @@
 CC = gcc-4.2
 CFLAGS = -Wall
 
-.PHONY: clean main
+.PHONY: clean
 
-%.o: %.c tree.h
-	$(CC) -c $(CFLAGS) -o $@ $<
+INCDRS = -I$(PRACTICE_TOPDIR)/list\
+		 -I$(PRACTICE_TOPDIR)/queue
 
-main: main.o tree.o diameter.o
+SRCFLS = $(PRACTICE_TOPDIR)/list/list.c\
+		 $(PRACTICE_TOPDIR)/queue/queue.c\
+
+OBJFLS = tree.o\
+		 diameter.o\
+		 $(PRACTICE_TOPDIR)/queue/queue.o\
+		 $(PRACTICE_TOPDIR)/list/list.o
+
+%.o: %.c $(SRCFLS) tree.h
+	$(CC) -c $(CFLAGS) $(INCDRS) -o $@ $<
+
+main: main.o $(OBJFLS) 
 	$(CC) -o $@ $^
 
 clean:

@@ -12,7 +12,7 @@ void list_init(List *list)
 }
 
 
-void list_insert(List *list, ListNode *list_node, const int data)
+void list_insert(List *list, ListNode *list_node, const void *data)
 {
     ListNode *new_node = (ListNode *)malloc(sizeof(ListNode));
     assert(new_node);
@@ -44,7 +44,7 @@ void list_insert(List *list, ListNode *list_node, const int data)
 /* Remove the list node next to `list_node`
  * Data of the removed node will be stored in `data`
  */
-void list_remove_next(List *list, ListNode *list_node, int *data)
+void list_remove_next(List *list, ListNode *list_node, void **data)
 {
     ListNode *old_node;
     assert(list->size > 0);
@@ -79,7 +79,7 @@ void list_remove_next(List *list, ListNode *list_node, int *data)
 /* Destroy a list using `list_remove_next()` */
 void list_destroy(List *list)
 {
-    int data;
+    void *data;
     //assert(list->size > 0);
     while (list->size > 0) {
         list_remove_next(list, NULL, &data);
@@ -106,7 +106,8 @@ void list_print(List *list)
 {
     ListNode *head = list->head;
     while (head) {
-        printf("%d", head->data);
+        int *t = (int *)head->data;
+        printf("%d", *t);
         if (head != list->tail) {
             printf("-->");
         }
