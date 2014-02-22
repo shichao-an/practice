@@ -155,7 +155,6 @@ void level_order_traverse(TreeNode *root)
         return;
     Queue *queue = queue_create();
     queue_enqueue(queue, root);
-    printf("Enqueue succeed.\n");
     while (!queue_empty(queue)) {
         TreeNode *current = (TreeNode *)queue_dequeue(queue);
         int data = current->data;

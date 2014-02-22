@@ -23,7 +23,7 @@ void stack_push(Stack *stack, const void *data)
 void *stack_pop(Stack *stack)
 {
     void *data;
-    list_remove_next(stack, NULL, (void **)&data);
+    list_remove_next(stack, NULL, &data);
     return data;
 }
 
