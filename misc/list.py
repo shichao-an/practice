@@ -18,14 +18,13 @@ def create_list(a):
     return q
 
 
-def print_list(p):
+def restore_list(p):
+    """Return array (Python list) from a linked list"""
     res = []
-    if p is None:
-        print('Empty list.')
     while p is not None:
         res.append(p.data)
         p = p.next
-    print(res)
+    return res
 
 
 def merge_sorted_lists(l1, l2):
@@ -73,13 +72,35 @@ def has_cycle(head):
     return False
 
 
+def remove_duplicates(head):
+    if head is None:
+        return None
+    if head.next is None:
+        return head
+    last = head
+    current = head.next
+    while current is not None:
+        next_node = current.next
+        if current.data == last.data:
+            last.next = next_node
+            # free(current) in C
+        else:
+            last = last.next
+        current = next_node
+    return head
+
+
 if __name__ == '__main__':
     l1 = create_list([2, 4, 5, 8])
     l2 = create_list([3, 4, 6, 7])
-    print_list(l1)
-    print_list(l2)
     p = merge_sorted_lists(l2, l1)
-    print_list(p)
+    assert restore_list(p) == [2, 3, 4, 4, 5, 6, 7, 8]
     l3 = create_list([3, 1])
-    print(has_cycle(l2))
-    print(has_cycle(l3))
+    assert not has_cycle(l2)
+    assert not has_cycle(l3)
+    d1 = create_list([1, 2, 3, 4, 5])
+    d2 = create_list([1, 1, 2, 3, 3])
+    r1 = remove_duplicates(d1)
+    r2 = remove_duplicates(d2)
+    assert restore_list(r1) == [1, 2, 3, 4, 5]
+    assert restore_list(r2) == [1, 2, 3]
