@@ -88,7 +88,7 @@ def preorder_traverse_alt(root):
     stack.append(root)
     while stack:
         root = stack.pop()
-        path.append(root)
+        path.append(root.data)
         if root.right is not None:
             stack.append(root.right)
         if root.left is not None:
