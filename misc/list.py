@@ -53,6 +53,26 @@ def merge_sorted_lists(l1, l2):
     return q.next
 
 
+def has_cycle(head):
+    if head is None:
+        return False
+    fast = slow = head
+    slow = slow.next
+    if slow is None:
+        return False
+    else:
+        fast = head.next.next
+    while fast is not None:
+        if fast == slow:
+            return True
+        slow = slow.next
+        if fast.next is not None:
+            fast = fast.next.next
+        else:
+            return False
+    return False
+
+
 if __name__ == '__main__':
     l1 = create_list([2, 4, 5, 8])
     l2 = create_list([3, 4, 6, 7])
@@ -60,3 +80,6 @@ if __name__ == '__main__':
     print_list(l2)
     p = merge_sorted_lists(l2, l1)
     print_list(p)
+    l3 = create_list([3, 1])
+    print(has_cycle(l2))
+    print(has_cycle(l3))
