@@ -73,6 +73,10 @@ def has_cycle(head):
 
 
 def remove_duplicates(head):
+    """
+    Given a sorted linked list, delete all duplicates such that
+    each element appear only once.
+    """
     if head is None:
         return None
     if head.next is None:

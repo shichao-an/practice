@@ -181,6 +181,27 @@ def search_insert(a, target):
     return left if left >= 0 else 0
 
 
+def remove_element(a, element):
+    """
+    Given an array and a value, remove all instances of that value in place
+    and return the new length.
+
+    The order of elements can be changed. It doesn't matter what you leave
+    beyond the new length.
+
+    Implemented the C way.
+    """
+    n = len(a)
+    m = 0  # new length
+    for i in range(n):
+        a[m] = a[i]
+        if a[i] == element:
+            pass
+        else:
+            m += 1
+    return m
+
+
 if __name__ == '__main__':
     assert reverse_integer(-173) == -371
     assert reverse_integer(976) == 679
@@ -213,3 +234,4 @@ if __name__ == '__main__':
     assert(search_insert(s, 2) == 1)
     assert(search_insert(s, 7) == 4)
     assert(search_insert(s, 0) == 0)
+    assert remove_element([3, 1, 2, 4, 5, 1, 7], 1) == 5
