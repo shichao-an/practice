@@ -19,15 +19,35 @@ def get_permutations(s):
         return perms
 
 
+def get_permutations_alt_aux(s, c, res):
+    """
+    :param res: a list for storing permutations (list of lists)
+    """
+    if not s:
+        res.append(''.join(c[:]))
+    else:
+        for i in range(len(s)):
+            c.append(s[i])
+            get_permutations_alt_aux(s[:i] + s[i + 1:], c, res)
+            c.pop()
+
+
+def get_permutations_alt(s):
+    res = []
+    c = []
+    get_permutations_alt_aux(s, c, res)
+    return res
+
+
 class TestPermutation(unittest.TestCase):
-    def test_get_permutations(self):
+    def _test_get_permutations(self, func=get_permutations):
         s1 = ''
-        perms1 = get_permutations(s1)
+        perms1 = func(s1)
         self.assertEqual(len(perms1), 1)
         assert '' in perms1
         s2 = 'abcd'
         f = math.factorial(len(s2))
-        perms2 = get_permutations(s2)
+        perms2 = func(s2)
         self.assertEqual(len(perms2), f)
         current = perms2[0]
         assert len(current) == len(s2)
@@ -38,6 +58,12 @@ class TestPermutation(unittest.TestCase):
                 assert c in _current
             assert _current != current
             _current = current
+
+    def test_get_permutations(self):
+        self._test_get_permutations(get_permutations)
+
+    def test_get_permutations_alt(self):
+        self._test_get_permutations(get_permutations_alt)
 
 
 if __name__ == '__main__':
