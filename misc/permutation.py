@@ -21,6 +21,8 @@ def get_permutations(s):
 
 def get_permutations_alt_aux(s, c, res):
     """
+    :param s: source string
+    :param c: candidate extension sequence
     :param res: a list for storing permutations (list of lists)
     """
     if not s:
