@@ -202,6 +202,16 @@ def remove_element(a, element):
     return m
 
 
+def backtrack_strings(n, A):
+    if n < 1:
+        print(A)
+    else:
+        A[n - 1] = 0
+        backtrack_strings(n - 1, A)
+        A[n - 1] = 1
+        backtrack_strings(n - 1, A)
+
+
 if __name__ == '__main__':
     assert reverse_integer(-173) == -371
     assert reverse_integer(976) == 679
@@ -235,3 +245,5 @@ if __name__ == '__main__':
     assert(search_insert(s, 7) == 4)
     assert(search_insert(s, 0) == 0)
     assert remove_element([3, 1, 2, 4, 5, 1, 7], 1) == 5
+    A = [0] * 5
+    backtrack_strings(5, A)
