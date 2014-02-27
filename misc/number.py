@@ -104,6 +104,33 @@ def get_max_profit_ii_alt(prices):
     return max_profit
 
 
+def get_max_profit_iii(prices):
+    """
+    Two transactions allowed
+    """
+    if not prices:
+        return 0
+    n = len(prices)
+    m1 = [0] * n
+    m2 = [0] * n
+    max_profit1 = 0
+    min_price1 = prices[0]
+    max_profit2 = 0
+    max_price2 = prices[-1]
+    for i in range(n):
+        max_profit1 = max(max_profit1, prices[i] - min_price1)
+        m1[i] = max_profit1
+        min_price1 = min(min_price1, prices[i])
+    for i in range(n):
+        max_profit2 = max(max_profit2, max_price2 - prices[n - 1 - i])
+        m2[n - 1 - i] = max_profit2
+        max_price2 = max(max_price2, prices[n - 1 - i])
+    max_profit = 0
+    for i in range(n):
+        max_profit = max(m1[i] + m2[i], max_profit)
+    return max_profit
+
+
 def get_max_profit_alt(prices):
     """
     :param prices: array of prices where `prices[i]` represents the price on
@@ -246,4 +273,7 @@ if __name__ == '__main__':
     assert(search_insert(s, 0) == 0)
     assert remove_element([3, 1, 2, 4, 5, 1, 7], 1) == 5
     A = [0] * 5
-    backtrack_binary(5, A)
+    #backtrack_binary(5, A)
+    h = [6, 1, 3, 2, 4, 7]
+    assert get_max_profit_iii(h) == 7
+    get_max_profit_iii(d)
