@@ -245,6 +245,10 @@ def get_gcd(a, b):
     return a
 
 
+def get_lcm(a, b):
+    return a * b / get_gcd(a, b)
+
+
 if __name__ == '__main__':
     assert reverse_integer(-173) == -371
     assert reverse_integer(976) == 679
@@ -283,5 +287,6 @@ if __name__ == '__main__':
     h = [6, 1, 3, 2, 4, 7]
     assert get_max_profit_iii(h) == 7
     assert get_max_profit_iii(d) == 11
-    get_gcd(48, 18) == 6
-    get_gcd(18, 48) == 6
+    assert get_gcd(48, 18) == 6
+    assert get_gcd(18, 48) == 6
+    assert get_lcm(48, 18) == 144
