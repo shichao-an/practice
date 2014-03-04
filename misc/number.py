@@ -239,6 +239,12 @@ def backtrack_binary(n, A):
         backtrack_binary(n - 1, A)
 
 
+def get_gcd(a, b):
+    while b != 0:
+        (a, b) = (b, a % b)
+    return a
+
+
 if __name__ == '__main__':
     assert reverse_integer(-173) == -371
     assert reverse_integer(976) == 679
@@ -276,4 +282,6 @@ if __name__ == '__main__':
     #backtrack_binary(5, A)
     h = [6, 1, 3, 2, 4, 7]
     assert get_max_profit_iii(h) == 7
-    get_max_profit_iii(d)
+    assert get_max_profit_iii(d) == 11
+    get_gcd(48, 18) == 6
+    get_gcd(18, 48) == 6
