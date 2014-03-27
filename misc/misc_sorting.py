@@ -23,9 +23,21 @@ def partition(A, left, right):
     return r
 
 
+def partition2(A, left, right):
+    """CLRS variant"""
+    pivot = A[right]
+    i = left
+    for j in range(left, right):
+        if A[j] <= pivot:
+            swap(A, i, j)
+            i += 1
+    swap(A, i, right)
+    return i
+
+
 def quicksort(A, left, right):
     if left < right:
-        p = partition(A, left, right)
+        p = partition2(A, left, right)
         quicksort(A, left, p - 1)
         quicksort(A, p + 1, right)
 
