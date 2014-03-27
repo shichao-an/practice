@@ -2,6 +2,25 @@ import math
 import unittest
 
 
+def get_permutations_aux(l, c, res):
+    if not l:
+        # Copy c here
+        res.append(c[:])
+    else:
+        for i in range(len(l)):
+            c.append(l[i])
+            get_permutations_aux(l[:i] + l[i + 1:], c, res)
+            c.pop()
+
+
+def get_permutations(l):
+    """Get permutations of a list (of integers)"""
+    res = []
+    c = []
+    get_permutations_aux(l, c, res)
+    return res
+
+
 def get_string_permutations(s):
     """
     Get permutations of a given string `s`
@@ -23,7 +42,7 @@ def get_string_permutations_alt_aux(s, c, res):
     """
     :param s: source string
     :param c: candidate extension sequence
-    :param res: a list for storing permutations (list of lists)
+    :param res: a list for storing permutations (list of strings)
     """
     if not s:
         res.append(''.join(c[:]))
@@ -69,4 +88,6 @@ class TestPermutation(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    unittest.main()
+    #unittest.main()
+    a = [1, 2, 3, 4]
+    print get_permutations(a)
