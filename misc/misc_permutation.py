@@ -2,7 +2,7 @@ import math
 import unittest
 
 
-def get_permutations(s):
+def get_string_permutations(s):
     """
     Get permutations of a given string `s`
     Return a list of strings
@@ -13,13 +13,13 @@ def get_permutations(s):
         perms = []
         for i, char in enumerate(s):
             rest_chars = s[:i] + s[i + 1:]
-            rest_perms = get_permutations(rest_chars)
+            rest_perms = get_string_permutations(rest_chars)
             for _perm in rest_perms:
                 perms.append(_perm + char)
         return perms
 
 
-def get_permutations_alt_aux(s, c, res):
+def get_string_permutations_alt_aux(s, c, res):
     """
     :param s: source string
     :param c: candidate extension sequence
@@ -30,19 +30,19 @@ def get_permutations_alt_aux(s, c, res):
     else:
         for i in range(len(s)):
             c.append(s[i])
-            get_permutations_alt_aux(s[:i] + s[i + 1:], c, res)
+            get_string_permutations_alt_aux(s[:i] + s[i + 1:], c, res)
             c.pop()
 
 
-def get_permutations_alt(s):
+def get_string_permutations_alt(s):
     res = []
     c = []
-    get_permutations_alt_aux(s, c, res)
+    get_string_permutations_alt_aux(s, c, res)
     return res
 
 
 class TestPermutation(unittest.TestCase):
-    def _test_get_permutations(self, func=get_permutations):
+    def _test_get_string_permutations(self, func=get_string_permutations):
         s1 = ''
         perms1 = func(s1)
         self.assertEqual(len(perms1), 1)
@@ -61,11 +61,11 @@ class TestPermutation(unittest.TestCase):
             assert _current != current
             _current = current
 
-    def test_get_permutations(self):
-        self._test_get_permutations(get_permutations)
+    def test_get_string_permutations(self):
+        self._test_get_string_permutations(get_string_permutations)
 
-    def test_get_permutations_alt(self):
-        self._test_get_permutations(get_permutations_alt)
+    def test_get_string_permutations_alt(self):
+        self._test_get_string_permutations(get_string_permutations_alt)
 
 
 if __name__ == '__main__':
