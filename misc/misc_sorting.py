@@ -46,9 +46,29 @@ def swap(A, i, j):
     A[i], A[j] = A[j], A[i]
 
 
+def countingsort(A, k):
+    """
+    Elements of A are integers between 0 to k - 1
+    """
+    n = len(A)
+    C = [0] * k
+    B = [0] * n
+    for i in range(n):
+        C[A[i]] += 1
+    for i in range(1, k):
+        C[i] += C[i - 1]
+    for i in range(n - 1, -1, -1):
+        B[C[A[i]] - 1] = A[i]
+        C[A[i]] -= 1
+    return B
+
+
 if __name__ == '__main__':
-    args = sys.argv[1:]
-    A = map(int, args)
+    #args = sys.argv[1:]
+    #A = map(int, args)
     #pdb.set_trace()
-    quicksort(A, 0, len(A) - 1)
-    print A
+    #quicksort(A, 0, len(A) - 1)
+    #print A
+    a = [3, 0, 2, 3, 1]
+    k = 4
+    print countingsort(a, k)
