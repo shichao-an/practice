@@ -28,7 +28,7 @@ def partition2(A, left, right):
     pivot = A[right]
     i = left
     for j in range(left, right):
-        if A[j] <= pivot:
+        if A[j] <= pivot:  # or equivalent: A[j] <= pivot
             swap(A, i, j)
             i += 1
     swap(A, i, right)
@@ -40,6 +40,13 @@ def quicksort(A, left, right):
         p = partition2(A, left, right)
         quicksort(A, left, p - 1)
         quicksort(A, p + 1, right)
+
+
+def quicksort_test(A):
+    left = 0
+    right = len(A) - 1
+    quicksort(A, left, right)
+    return A
 
 
 def swap(A, i, j):
@@ -63,12 +70,29 @@ def countingsort(A, k):
     return B
 
 
+def test_sorting(func):
+    print func.func_name
+    assert func([]) == []
+    assert func([1]) == [1]
+    assert func([1, 2]) == [1, 2]
+    assert func([2, 1]) == [1, 2]
+    A = [3, 3, 2, 1]
+    assert func(A) == sorted(A)
+    B = [3, 1, 4, 2, 5]
+    assert func(B) == sorted(B)
+    C = [1, 1, 4, 3, 3]
+    assert func(C) == sorted(C)
+    D = [1] * 2 + [0] + [1] * 2
+    assert func(D) == sorted(D)
+
+
 if __name__ == '__main__':
-    #args = sys.argv[1:]
+    args = sys.argv[1:]
     #A = map(int, args)
     #pdb.set_trace()
     #quicksort(A, 0, len(A) - 1)
     #print A
-    a = [3, 0, 2, 3, 1]
-    k = 4
-    print countingsort(a, k)
+    test_sorting(quicksort_test)
+    #a = [3, 0, 2, 3, 1]
+    #k = 4
+    #print countingsort(a, k)
