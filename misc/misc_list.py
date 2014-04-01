@@ -161,6 +161,28 @@ def is_even(head):
     return False
 
 
+def reverse_pair_list(head):
+    """Reverse a list in pairs
+    For example, 1->2->3->4 will be 2->1->4->3
+    """
+    if head is None or head.next is None:
+        return
+    else:
+        # Swap data instead of nodes
+        head.next.data, head.data = head.data, head.next.data
+        reverse_pair_list(head.next.next)
+
+
+def get_mid(head):
+    """Get the middle node of the list"""
+    fast = head
+    slow = head
+    while fast is not None and fast.next is not None:
+        fast = fast.next.next
+        slow = slow.next
+    return slow
+
+
 if __name__ == '__main__':
     l1 = create_list([2, 4, 5, 8])
     l2 = create_list([3, 4, 6, 7])
@@ -202,3 +224,19 @@ if __name__ == '__main__':
     assert is_even(even1)
     assert not is_even(odd1)
     assert not is_even(odd2)
+    pr1 = create_list([1, 2, 3, 4])
+    pr1_res = create_list([2, 1, 4, 3])
+    reverse_pair_list(pr1)
+    assert are_same_lists(pr1, pr1_res)
+    m1 = create_list([])
+    m2 = create_list([1])
+    m3 = create_list([1, 2])
+    m4 = create_list([1, 2, 3])
+    mid1 = get_mid(m1)
+    mid2 = get_mid(m2)
+    mid3 = get_mid(m3)
+    mid4 = get_mid(m4)
+    assert mid1 is None
+    assert mid2.data == 1
+    assert mid3.data == 2
+    assert mid4.data == 2
