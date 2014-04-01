@@ -94,6 +94,43 @@ def remove_duplicates(head):
     return head
 
 
+def ntolast(head, n):
+    if head is None:
+        return None
+    elif n == 0:
+        return None
+    elif head.next == ntolast(head.next, n - 1):
+        return head
+    else:
+        return ntolast(head.next, n)
+
+
+def ntolast2(head, n):
+    """Non-recursive"""
+    p = head
+    q = head
+    i = 0
+    while p is not None and i < n:
+        p = p.next
+        i += 1
+    while p is not None:
+        p = p.next
+        q = q.next
+    return q
+
+
+def print_list(head):
+    if head is None:
+        print('(empty)')
+    else:
+        while head is not None:
+            print(head.data, end='')
+            if head.next is not None:
+                print('->', end='')
+            head = head.next
+        print()
+
+
 if __name__ == '__main__':
     l1 = create_list([2, 4, 5, 8])
     l2 = create_list([3, 4, 6, 7])
@@ -108,3 +145,12 @@ if __name__ == '__main__':
     r2 = remove_duplicates(d2)
     assert restore_list(r1) == [1, 2, 3, 4, 5]
     assert restore_list(r2) == [1, 2, 3]
+    s1 = create_list([1, 2, 3, 4, 5, 6, 7])
+    s1_first = ntolast2(s1, 7)
+    s1_last = ntolast2(s1, 1)
+    s1_mid = ntolast2(s1, 4)
+    s1_out = ntolast2(s1, 8)
+    assert s1_first.data == 1
+    assert s1_last.data == 7
+    assert s1_mid.data == 4
+    assert s1_out.data == 1
