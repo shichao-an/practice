@@ -146,10 +146,12 @@ if __name__ == '__main__':
     assert restore_list(r1) == [1, 2, 3, 4, 5]
     assert restore_list(r2) == [1, 2, 3]
     s1 = create_list([1, 2, 3, 4, 5, 6, 7])
+    s1_end = ntolast2(s1, 0)
     s1_first = ntolast2(s1, 7)
     s1_last = ntolast2(s1, 1)
     s1_mid = ntolast2(s1, 4)
     s1_out = ntolast2(s1, 8)
+    assert s1_end is None
     assert s1_first.data == 1
     assert s1_last.data == 7
     assert s1_mid.data == 4
