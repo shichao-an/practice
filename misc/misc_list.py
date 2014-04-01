@@ -152,6 +152,15 @@ def are_same_lists(h1, h2):
     return False
 
 
+def is_even(head):
+    """Determine whether the length of a list is even"""
+    while head is not None and head.next is not None:
+        head = head.next.next
+    if head is None:
+        return True
+    return False
+
+
 if __name__ == '__main__':
     l1 = create_list([2, 4, 5, 8])
     l2 = create_list([3, 4, 6, 7])
@@ -184,3 +193,12 @@ if __name__ == '__main__':
     p2 = create_list([4, 3, 2, 1])
     reverse_p1 = reverse_list(p1)
     assert are_same_lists(reverse_p1, p2)
+    even0 = None
+    even1 = create_list([1, 2])
+    even2 = create_list([1, 2, 3, 4])
+    odd1 = create_list([1])
+    odd2 = create_list([1, 2, 3])
+    assert is_even(even0)
+    assert is_even(even1)
+    assert not is_even(odd1)
+    assert not is_even(odd2)
