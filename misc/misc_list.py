@@ -183,6 +183,42 @@ def get_mid(head):
     return slow
 
 
+def is_palindrome(head):
+    # First get the middle node and determine whether
+    # the length of this list is even or odd
+    fast = head
+    slow = head
+    while fast is not None and fast.next is not None:
+        fast = fast.next.next
+        slow = slow.next
+
+    # Head of the second half
+    second = slow
+
+    # Odd
+    if fast is not None and fast.next is None:
+        second = second.next
+
+    # Reverse second half
+    last_node = None
+    while second is not None:
+        next_node = second.next
+        second.next = last_node
+        last_node = second
+        second = next_node
+
+    # Compare the two halves
+    p = last_node
+    q = head
+    while p is not None:
+        if p.data != q.data:
+            return False
+        p = p.next
+        q = q.next
+    return True
+    # May need to reconstruct the list
+
+
 if __name__ == '__main__':
     l1 = create_list([2, 4, 5, 8])
     l2 = create_list([3, 4, 6, 7])
@@ -214,7 +250,11 @@ if __name__ == '__main__':
     p1 = create_list([1, 2, 3, 4])
     p2 = create_list([4, 3, 2, 1])
     reverse_p1 = reverse_list(p1)
+    p3 = create_list([1, 2])
+    p4 = create_list([2, 1])
+    reverse_p3 = reverse_list(p3)
     assert are_same_lists(reverse_p1, p2)
+    assert are_same_lists(reverse_p3, p4)
     even0 = None
     even1 = create_list([1, 2])
     even2 = create_list([1, 2, 3, 4])
@@ -240,3 +280,18 @@ if __name__ == '__main__':
     assert mid2.data == 1
     assert mid3.data == 2
     assert mid4.data == 2
+    pan = None
+    pa0 = create_list([0])
+    pa1 = create_list([1, 1])
+    pa2 = create_list([1, 2, 1])
+    pa3 = create_list([1, 2, 2, 1])
+    npa1 = create_list([1, 2])
+    npa2 = create_list([1, 2, 3])
+    npa3 = create_list([1, 2, 3, 4])
+    assert is_palindrome(pan)
+    assert is_palindrome(pa0)
+    assert is_palindrome(pa1)
+    assert is_palindrome(pa2)
+    assert is_palindrome(pa3)
+    assert not is_palindrome(npa1)
+    assert not is_palindrome(npa2)
