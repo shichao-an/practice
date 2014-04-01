@@ -131,6 +131,27 @@ def print_list(head):
         print()
 
 
+def reverse_list(head):
+    last_node = None
+    while head is not None:
+        next_node = head.next
+        head.next = last_node
+        last_node = head
+        head = next_node
+    return last_node
+
+
+def are_same_lists(h1, h2):
+    while h1 is not None and h2 is not None:
+        if h1.data != h2.data:
+            return False
+        h1 = h1.next
+        h2 = h2.next
+    if h1 is None and h2 is None:
+        return True
+    return False
+
+
 if __name__ == '__main__':
     l1 = create_list([2, 4, 5, 8])
     l2 = create_list([3, 4, 6, 7])
@@ -156,3 +177,10 @@ if __name__ == '__main__':
     assert s1_last.data == 7
     assert s1_mid.data == 4
     assert s1_out.data == 1
+    rr1 = create_list([])
+    rr2 = create_list([1])
+    assert not are_same_lists(rr1, rr2)
+    p1 = create_list([1, 2, 3, 4])
+    p2 = create_list([4, 3, 2, 1])
+    reverse_p1 = reverse_list(p1)
+    assert are_same_lists(reverse_p1, p2)
