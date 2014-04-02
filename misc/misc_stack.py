@@ -11,6 +11,8 @@ operators = {
 }
 
 
+# Assume all tokens are single-character
+
 def infix_to_postfix(s):
     """Simple version of shunting-yard algorithm"""
     stack = []
@@ -41,6 +43,22 @@ def infix_to_postfix(s):
     return res
 
 
+def postfix_eval(s):
+    stack = []
+    for c in s:
+        # c is an operand
+        if c not in operators:
+            stack.append(c)
+        # Assume no unary operators
+        else:
+            o1 = stack.pop()
+            o2 = stack.pop()
+            stmt = o2 + c + o1  # o2 comes first
+            res = str(eval(stmt))
+            stack.append(res)
+    return stack.pop()
+
+
 if __name__ == '__main__':
     s1 = 'A*B-(C+D)+E'
     r1 = infix_to_postfix(s1)
@@ -48,3 +66,5 @@ if __name__ == '__main__':
     r2 = infix_to_postfix(s2)
     print(r1)
     print(r2)
+    p1 = '123*+5-'
+    print(postfix_eval(p1))
