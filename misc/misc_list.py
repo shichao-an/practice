@@ -219,6 +219,29 @@ def is_palindrome(head):
     # May need to reconstruct the list
 
 
+def pascal_triangle(num):
+    res = []
+    res.append([1])
+    if num == 1:
+        return res
+    res.append([1, 1])
+    if num == 2:
+        return res
+    # n is current row index (starting from 0)
+    for n in range(2, num):
+        cur = []
+        for i in range(n + 1):
+            if i == 0:
+                cur.append(1)
+            elif i == n:
+                cur.append(1)
+            else:
+                c = res[n - 1][i - 1] + res[n - 1][i]
+                cur.append(c)
+        res.append(cur)
+    return res
+
+
 if __name__ == '__main__':
     l1 = create_list([2, 4, 5, 8])
     l2 = create_list([3, 4, 6, 7])
@@ -295,3 +318,4 @@ if __name__ == '__main__':
     assert is_palindrome(pa3)
     assert not is_palindrome(npa1)
     assert not is_palindrome(npa2)
+    print(pascal_triangle(5))
