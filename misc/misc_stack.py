@@ -59,6 +59,33 @@ def postfix_eval(s):
     return stack.pop()
 
 
+class AdvancedStack(object):
+    """Stack that has O(1) get_min() method"""
+    def __init__(self):
+        self.elem_stack = []
+        self.min_stack = []
+
+    def pop(self):
+        popped = self.elem_stack.pop()
+        # Pop the min_stack if the popped value from elem_stack is equal
+        # to the current min value
+        if popped == self.min_stack[-1]:
+            self.min_stack.pop()
+
+    def push(self, data):
+        if self.min_stack:
+            # Only push to the min_stack if data is less than or equal
+            # to the current min value
+            if data <= self.min_stack[-1]:
+                self.min_stack.append(data)
+        else:
+            self.min_stack.append(data)
+        self.elem_stack.append(data)
+
+    def get_min(self):
+        return self.min_stack[-1]
+
+
 if __name__ == '__main__':
     s1 = 'A*B-(C+D)+E'
     r1 = infix_to_postfix(s1)
