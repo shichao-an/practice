@@ -249,6 +249,26 @@ def get_lcm(a, b):
     return a * b / get_gcd(a, b)
 
 
+def largest_rectangle(height):
+    if not height:
+        return 0
+    if len(height) == 1:
+        return height[0]
+    stack = []  # The bottom element in the stack is the lowest
+    max_area = 0
+    n = len(height)
+    for i in range(n + 1):
+        while stack and (i == n or height[stack[-1]] > height[i]):
+            h = height[stack.pop()]
+            if stack:
+                w = i - stack[-1] - 1
+            else:
+                w = i
+            max_area = max(max_area, h * w)
+        stack.append(i)
+    return max_area
+
+
 if __name__ == '__main__':
     assert reverse_integer(-173) == -371
     assert reverse_integer(976) == 679
@@ -290,3 +310,6 @@ if __name__ == '__main__':
     assert get_gcd(48, 18) == 6
     assert get_gcd(18, 48) == 6
     assert get_lcm(48, 18) == 144
+    h1 = [4, 2]
+    r1 = largest_rectangle(h1)
+    print(r1)
