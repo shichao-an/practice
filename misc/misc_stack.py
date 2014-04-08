@@ -89,8 +89,10 @@ class AdvancedStack(object):
 def find_spans(A):
     """
     Given an array A, return array S, where S[i] of A[i] is the maximum number
-    of consecutive elements immediately preceding A[i] and smaller than or
-    equal to A[i]
+    of consecutive elements immediately preceding A[i] (including A[i]) and
+    smaller than or equal to A[i]
+
+    For example, if A = [6, 3, 4, 5, 2], then S = [1, 1, 2, 3, 1]
     """
     stack = []
     n = len(A)
@@ -110,6 +112,19 @@ def find_spans(A):
     return S
 
 
+def find_spans_alt(A):
+    """Alterative using DP"""
+    n = len(A)
+    S = [0] * n
+    S[0] = 1
+    for i in range(1, n):
+        if A[i] < A[i - 1]:
+            S[i] = 1
+        else:
+            S[i] = S[i - 1] + 1
+    return S
+
+
 if __name__ == '__main__':
     s1 = 'A*B-(C+D)+E'
     r1 = infix_to_postfix(s1)
@@ -120,5 +135,8 @@ if __name__ == '__main__':
     p1 = '123*+5-'
     print(postfix_eval(p1))
     a = [6, 3, 4, 5, 2]
-    s = find_spans(a)
-    print(s)
+    sa = find_spans_alt(a)
+    b = [1, 1, 1, 1, 1]
+    sb = find_spans_alt(b)
+    print(sa)
+    print(sb)
