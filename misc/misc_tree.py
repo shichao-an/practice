@@ -1,3 +1,9 @@
+import sys
+
+MAX_INT = sys.maxint
+MIN_INT = -sys.maxint - 1
+
+
 class TreeNode(object):
     def __init__(self, data):
         self.data = data
@@ -140,6 +146,32 @@ def populate_next_right_pointers(root):
     populate_next_right_pointers(root.right)
 
 
+def find_max(root):
+    if root is None:
+        return MIN_INT
+    else:
+        left_max = find_max(root.left)
+        right_max = find_max(root.right)
+        return max(left_max, right_max, root.data)
+
+
+def find_max_alt(root):
+    """Non-recursive using level order traversal"""
+    max_data = MIN_INT
+    if root is None:
+        return max_data
+    queue = []
+    queue.append(root)
+    while queue:
+        root = queue.pop(0)
+        max_data = max(root.data, max_data)
+        if root.left is not None:
+            queue.append(root.left)
+        if root.right is not None:
+            queue.append(root.right)
+    return max_data
+
+
 if __name__ == '__main__':
     root = new_tree_node(1)
     root.left = new_tree_node(2)
@@ -160,3 +192,5 @@ if __name__ == '__main__':
     assert unique_num_bst(2) == 2
     assert unique_num_bst(3) == 5
     print(level_order_traverse(root))
+    print(find_max(root))
+    print(find_max_alt(root))
