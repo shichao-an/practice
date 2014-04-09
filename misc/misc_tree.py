@@ -96,6 +96,22 @@ def preorder_traverse_alt(root):
     return path
 
 
+def level_order_traverse(root):
+    path = []
+    queue = []
+    if root is None:
+        return path
+    queue.append(root)
+    while queue:
+        t = queue.pop(0)
+        path.append(t.data)
+        if t.left is not None:
+            queue.append(t.left)
+        if t.right is not None:
+            queue.append(t.right)
+    return path
+
+
 def inorder_traverse(root):
     stack = []
     path = []
@@ -143,3 +159,4 @@ if __name__ == '__main__':
     assert unique_num_bst(1) == 1
     assert unique_num_bst(2) == 2
     assert unique_num_bst(3) == 5
+    print(level_order_traverse(root))
