@@ -172,6 +172,16 @@ def find_max_alt(root):
     return max_data
 
 
+def find_node(root, data):
+    if root is None:
+        return False
+    else:
+        if root.data == data:
+            return True
+        else:
+            return find_node(root.left, data) or find_node(root.right, data)
+
+
 if __name__ == '__main__':
     root = new_tree_node(1)
     root.left = new_tree_node(2)
@@ -194,3 +204,5 @@ if __name__ == '__main__':
     print(level_order_traverse(root))
     print(find_max(root))
     print(find_max_alt(root))
+    print(find_node(root, 4))
+    print(find_node(root, 5))
