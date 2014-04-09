@@ -96,6 +96,21 @@ def preorder_traverse_alt(root):
     return path
 
 
+def inorder_traverse(root):
+    stack = []
+    path = []
+    while True:
+        while root is not None:
+            stack.append(root)
+            root = root.left
+        if not stack:
+            break
+        root = stack.pop()
+        stack.append(root)
+        root = root.right
+    return path
+
+
 def populate_next_right_pointers(root):
     if root is None:
         return

@@ -65,5 +65,6 @@ def test_queue_stack():
     print(qs.pop())
     print(qs.pop())
 
+
 if __name__ == '__main__':
     test_queue_stack()
