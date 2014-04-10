@@ -255,8 +255,32 @@ def get_paths(root):
     path = []
     paths = []
     get_paths_aux(root, path, paths)
-    print(paths)
     return paths
+
+
+def tree_mirror(root):
+    if root is None:
+        return
+    else:
+        tree_mirror(root.left)
+        tree_mirror(root.right)
+        root.left, root.right = root.right, root.left
+
+
+def get_lca(root, a, b):
+    """
+    Get the least common ancestor of `a` and `b` in `root`
+    """
+    if root is None:
+        return None
+    if root == a or root == b:
+        return root
+    left_lca = get_lca(root.left, a, b)
+    right_lca = get_lca(root.right, a, b)
+    if left_lca is not None and right_lca is not None:
+        return root
+    else:
+        return left_lca if left_lca is not None else right_lca
 
 
 def _tree1():
@@ -311,3 +335,5 @@ if __name__ == '__main__':
     print(get_diameter(root))
     print(get_diameter(_tree1()))
     print(get_paths(root))
+    t1 = _tree1()
+    tree_mirror(t1)
