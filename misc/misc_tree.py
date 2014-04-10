@@ -182,6 +182,104 @@ def find_node(root, data):
             return find_node(root.left, data) or find_node(root.right, data)
 
 
+def get_height(root):
+    """Non-recursive variant of max_tree_depth()"""
+    height = -1
+    if root is None:
+        return height
+    queue = []
+    queue.append(root)
+    queue.append(None)
+    while queue:
+        root = queue.pop(0)
+        if root is None:
+            if queue:
+                queue.append(None)
+            height += 1
+        else:
+            if root.left is not None:
+                queue.append(root.left)
+            if root.right is not None:
+                queue.append(root.right)
+    return height
+
+
+def get_num_leaves(root):
+    """Non-recursive"""
+    n = 0
+    if root is None:
+        return n
+    queue = []
+    queue.append(root)
+    while queue:
+        root = queue.pop(0)
+        if root.left is None and root.right is None:
+            n += 1
+        else:
+            if root.left is not None:
+                queue.append(root.left)
+            if root.right is not None:
+                queue.append(root.right)
+    return n
+
+
+def get_diameter(root):
+    if root is None:
+        return 0
+    else:
+        left_d = get_diameter(root.left)
+        right_d = get_diameter(root.right)
+        left_h = get_height(root.left) + 1
+        right_h = get_height(root.right) + 1
+        d = max(left_d, right_d)
+        return max(d, left_h + right_h + 1)
+
+
+def get_paths_aux(root, path, paths):
+    """
+    Get all root-to-leave paths
+    Return a list of list of intgers
+    """
+    if root is None:
+        return
+    path.append(root.data)
+    if root.left is None and root.right is None:
+        paths.append(path[:])
+    else:
+        get_paths_aux(root.left, path, paths)
+        get_paths_aux(root.right, path, paths)
+    path.pop()
+
+
+def get_paths(root):
+    path = []
+    paths = []
+    get_paths_aux(root, path, paths)
+    print(paths)
+    return paths
+
+
+def _tree1():
+    """
+            1
+           /
+          2
+         / \
+        3   4
+       /   /
+      6   5
+    """
+    root = new_tree_node(1)
+    q = root
+    q.left = new_tree_node(2)
+    q = q.left
+    q.left = new_tree_node(3)
+    q.right = new_tree_node(4)
+    q.right.left = new_tree_node(5)
+    q = q.left
+    q.left = new_tree_node(6)
+    return root
+
 if __name__ == '__main__':
     root = new_tree_node(1)
     root.left = new_tree_node(2)
@@ -206,3 +304,10 @@ if __name__ == '__main__':
     print(find_max_alt(root))
     print(find_node(root, 4))
     print(find_node(root, 5))
+    print(get_height(root))
+    print(get_height(root.left))
+    print(get_num_leaves(root))
+    print(get_num_leaves(root.left))
+    print(get_diameter(root))
+    print(get_diameter(_tree1()))
+    print(get_paths(root))
