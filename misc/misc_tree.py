@@ -283,6 +283,31 @@ def get_lca(root, a, b):
         return left_lca if left_lca is not None else right_lca
 
 
+def find_bst_node(root, data):
+    if root is None:
+        return None
+    if data < root.data:
+        return find_bst_node(root.left, data)
+    elif data > root.data:
+        return find_bst_node(root.right, data)
+    else:
+        return root
+
+
+def find_bst_node_alt(root, data):
+    """Non-recursive"""
+    if root is None:
+        return None
+    while root is not None:
+        if data < root.data:
+            root = root.left
+        elif data > root.data:
+            root = root.right
+        else:
+            return root
+    return None
+
+
 def _tree1():
     """
             1
