@@ -35,9 +35,26 @@ def partition2(A, left, right):
     return i
 
 
+def partition3(A, left, right):
+    pivot = A[left]
+    l = left + 1
+    r = right
+    while l <= r:
+        if A[l] <= pivot:
+            l += 1
+        if A[r] > pivot:
+            r -= 1
+        if l <= r:
+            swap(A, l, r)
+    # For extreme case like: [1, 3]
+    if A[left] > A[r]:
+        swap(A, left, r)
+    return r
+
+
 def quicksort(A, left, right):
     if left < right:
-        p = partition2(A, left, right)
+        p = partition3(A, left, right)
         quicksort(A, left, p - 1)
         quicksort(A, p + 1, right)
 
@@ -77,8 +94,11 @@ def test_sorting(func):
     assert func([1, 2]) == [1, 2]
     assert func([2, 1]) == [1, 2]
     A = [3, 3, 2, 1]
+    A1 = [1, 3, 2]
+    print(func(A1))
     assert func(A) == sorted(A)
     B = [3, 1, 4, 2, 5]
+    print(func(B))
     assert func(B) == sorted(B)
     C = [1, 1, 4, 3, 3]
     assert func(C) == sorted(C)
