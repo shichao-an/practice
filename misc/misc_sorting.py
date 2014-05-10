@@ -87,6 +87,18 @@ def countingsort(A, k):
     return B
 
 
+def selection_sort_k(A, k):
+    """Return smallest k sorted elements"""
+    n = len(A)
+    for i in range(k):
+        min_j = i
+        for j in range(i, n):
+            if A[j] < A[min_j]:
+                min_j = j
+        A[i], A[min_j] = A[min_j], A[i]
+    return A[:k]
+
+
 def test_sorting(func):
     print func.func_name
     assert func([]) == []
@@ -112,7 +124,9 @@ if __name__ == '__main__':
     #pdb.set_trace()
     #quicksort(A, 0, len(A) - 1)
     #print A
-    test_sorting(quicksort_test)
+    #test_sorting(quicksort_test)
     #a = [3, 0, 2, 3, 1]
     #k = 4
     #print countingsort(a, k)
+    a1 = [8, 3, 4, 5, 1, 3, 6, 7]
+    print selection_sort_k(a1, 4)
