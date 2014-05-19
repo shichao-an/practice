@@ -242,6 +242,19 @@ def pascal_triangle(num):
     return res
 
 
+def reverse(head):
+    if head is None or head.next is None:
+        return head
+    else:
+        res = reverse(head.next)
+        p = res
+        while p.next is not None:
+            p = p.next
+        p.next = head
+        head.next = None
+        return res
+
+
 if __name__ == '__main__':
     l1 = create_list([2, 4, 5, 8])
     l2 = create_list([3, 4, 6, 7])
@@ -319,3 +332,9 @@ if __name__ == '__main__':
     assert not is_palindrome(npa1)
     assert not is_palindrome(npa2)
     print(pascal_triangle(5))
+    sl1 = create_list([1])
+    sl2 = create_list([1, 2])
+    rl1 = reverse(sl1)
+    rl2 = reverse(sl2)
+    print(restore_list(rl1))
+    print(restore_list(rl2))
